@@ -67,7 +67,7 @@ class PhoneSignup extends StatelessWidget {
                 "Cadastrar de outra maneira"
               ),
               onPressed: () {
-
+                Navigator.pop(context);
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(

@@ -50,9 +50,25 @@ class LoginPage extends StatelessWidget {
               height: 25,
             ),
             ElevatedButton(
-              child: Text(
-                "Continuar com Google"
-              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/google.png',
+                      height: 24,
+                      width: 24,
+                    ),
+                    SizedBox(width: 8),
+                  ],
+                ),
+                Text(
+                  "Continuar com Google",
+                ),
+                SizedBox(width: 32),
+              ],
+            ),
               onPressed: () {
         
               },
@@ -68,9 +84,25 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
             ElevatedButton(
-              child: Text(
-                "Continuar com Facebook"
-              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/facebook.png',
+                      height: 24,
+                      width: 24,
+                    ),
+                    SizedBox(width: 8),
+                  ],
+                ),
+                Text(
+                  "Continuar com Facebook",
+                ),
+                SizedBox(width: 32),
+              ],
+            ),
               onPressed: () {
               },
               style: ButtonStyle(
@@ -85,11 +117,27 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
             ElevatedButton(
-              child: Text(
-                "Continuar com E-mail"
-              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/email.png',
+                      height: 24,
+                      width: 24,
+                    ),
+                    SizedBox(width: 8),
+                  ],
+                ),
+                Text(
+                  "Continuar com E-mail",
+                ),
+                SizedBox(width: 32),
+              ],
+            ),
               onPressed: () {
-
+                Navigator.pushNamed(context, "/emailsignup");
               },
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(
@@ -103,11 +151,27 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),            
             ElevatedButton(
-              child: Text(
-                "Continuar com Telefone"
-              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/telefone.png',
+                      height: 24,
+                      width: 24,
+                    ),
+                    SizedBox(width: 8),
+                  ],
+                ),
+                Text(
+                  "Continuar com Telefone",
+                ),
+                SizedBox(width: 32),
+              ],
+            ),
               onPressed: () {
-
+                Navigator.pushNamed(context, "/phonesignup");
               },
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(

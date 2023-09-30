@@ -1,4 +1,6 @@
+import 'package:conserta_ja/pages/emailsignup.dart';
 import 'package:conserta_ja/pages/loginpage.dart';
+import 'package:conserta_ja/pages/phonesignup.dart';
 import 'package:flutter/material.dart';
 
 void main () => runApp(MyApp());
@@ -8,6 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: "/loginpage",
+      routes: {
+        "/loginpage" : (context) => LoginPage(),
+        "/emailsignup" :(context) => EmailSignup(),
+        "/phonesignup" :(context) => PhoneSignup(),
+      },
       title: "Conserta Já!",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
