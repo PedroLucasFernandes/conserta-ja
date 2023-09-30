@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
-class EmailSignup extends StatelessWidget {
+class EmailSignup extends StatefulWidget {
+  @override
+  _EmailSignupState createState() => _EmailSignupState();
+}
+
+class _EmailSignupState extends State<EmailSignup> {
+
+  TextEditingController emailController = TextEditingController();
+  bool emailValido = false;
+  bool erro = false;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +25,6 @@ class EmailSignup extends StatelessWidget {
           right: 40,
         ),
         color: Colors.white,
-
         child: ListView(
           children: <Widget>[
             SizedBox(
@@ -41,6 +49,7 @@ class EmailSignup extends StatelessWidget {
               height: 50,
             ),
             TextFormField(
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: "Digite o E-mail:",
@@ -50,17 +59,37 @@ class EmailSignup extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
+              onChanged: (value) {
+                setState(() {
+                  // Validação do e-mail
+                  emailValido = isValidEmail(value);
+                  erro = false; // Verifica se o e-mail é válido
+                });
+              },
             ),
+            if (erro)
+              Text(
+                "Por favor, insira um e-mail válido.",
+                style: TextStyle(
+                  color: Colors.red, // Cor vermelha para indicar o erro
+                ),
+              ),
             SizedBox(
               height: 30,
             ),
             ElevatedButton(
               child: Text(
-                "Continuar"
+                "Continuar",
               ),
               onPressed: () {
-                Navigator.pushNamed(context, "/name");
-              },
+                if (emailValido){
+                  Navigator.pushNamed(context, "/name");
+                } else{
+                  setState(() {
+                    erro = true;
+                  });
+                }
+              }  
             ),
             ElevatedButton(
               child: Text(
@@ -82,5 +111,10 @@ class EmailSignup extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool isValidEmail(String email) {
+    return email.contains('@') &&
+    !email.contains(' ');
   }
 }

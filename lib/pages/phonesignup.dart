@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
-class PhoneSignup extends StatelessWidget {
+class PhoneSignup extends StatefulWidget {
+  @override
+  _PhoneSignupState createState() => _PhoneSignupState();
+}
+
+class _PhoneSignupState extends State<PhoneSignup> {
+
+  TextEditingController phoneController = TextEditingController();
+  bool phoneValido = false;
+  bool erro = false;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +50,7 @@ class PhoneSignup extends StatelessWidget {
               height: 50,
             ),
             TextFormField(
+              controller: phoneController,
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
                 labelText: "Digite o Telefone:",
@@ -50,7 +60,21 @@ class PhoneSignup extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
+              onChanged: (value) {
+                setState(() {
+                  // Validação do e-mail
+                  phoneValido = isValidPhone(value);
+                  erro = false; // Verifica se o e-mail é válido
+                });
+              },
             ),
+            if (erro)
+              Text(
+                "Por favor, insira um e-mail válido.",
+                style: TextStyle(
+                  color: Colors.red, // Cor vermelha para indicar o erro
+                ),
+              ),
             SizedBox(
               height: 30,
             ),
@@ -59,8 +83,14 @@ class PhoneSignup extends StatelessWidget {
                 "Continuar"
               ),
               onPressed: () {
-                Navigator.pushNamed(context, "/name");
-              },
+                if (phoneValido){
+                  Navigator.pushNamed(context, "/name");
+                } else{
+                  setState(() {
+                    erro = true;
+                  });
+                }
+              }  
             ),
             ElevatedButton(
               child: Text(
@@ -82,5 +112,10 @@ class PhoneSignup extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool isValidPhone(String phoneNumber) {
+    return phoneNumber.isNotEmpty &&
+    !phoneNumber.contains(RegExp(r'[A-Za-z]'));
   }
 }
