@@ -75,7 +75,7 @@ class LoginPage extends StatelessWidget {
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
@@ -108,7 +108,7 @@ class LoginPage extends StatelessWidget {
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
@@ -142,7 +142,7 @@ class LoginPage extends StatelessWidget {
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
@@ -176,7 +176,7 @@ class LoginPage extends StatelessWidget {
               style: ButtonStyle(
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),

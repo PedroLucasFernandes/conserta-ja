@@ -59,7 +59,7 @@ class EmailSignup extends StatelessWidget {
                 "Continuar"
               ),
               onPressed: () {
-
+                Navigator.pushNamed(context, "/name");
               },
             ),
             ElevatedButton(

@@ -1,5 +1,6 @@
 import 'package:conserta_ja/pages/emailsignup.dart';
 import 'package:conserta_ja/pages/loginpage.dart';
+import 'package:conserta_ja/pages/name.dart';
 import 'package:conserta_ja/pages/phonesignup.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         "/loginpage" : (context) => LoginPage(),
         "/emailsignup" :(context) => EmailSignup(),
         "/phonesignup" :(context) => PhoneSignup(),
+        "/name" :(context) => Name(),
       },
       title: "Conserta Já!",
       debugShowCheckedModeBanner: false,
