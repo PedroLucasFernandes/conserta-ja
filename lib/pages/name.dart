@@ -31,35 +31,43 @@ class Name extends StatelessWidget {
             ),
             SizedBox(height: 30,),
             ElevatedButton(
-              child: Text(
-                "Sou cliente"
-              ),
-              onPressed: () {
-
-              },
               style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.black),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
+              child: Text(
+                "Sou cliente",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+
+              },
             ),
             SizedBox(height: 12,),
             ElevatedButton(
-              child: Text(
-                "Sou prestador de serviços"
-              ),
-              onPressed: () {
-
-              },
               style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.black),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
+              child: Text(
+                "Sou prestador de serviços",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+
+              },
             ),          
           ],
         ),

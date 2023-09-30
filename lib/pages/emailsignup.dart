@@ -78,9 +78,6 @@ class _EmailSignupState extends State<EmailSignup> {
               height: 30,
             ),
             ElevatedButton(
-              child: Text(
-                "Continuar",
-              ),
               onPressed: () {
                 if (emailValido){
                   Navigator.pushNamed(context, "/name");
@@ -89,12 +86,18 @@ class _EmailSignupState extends State<EmailSignup> {
                     erro = true;
                   });
                 }
-              }  
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.black)
+              ),
+              child: Text(
+                "Continuar",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
             ElevatedButton(
-              child: Text(
-                "Cadastrar de outra maneira"
-              ),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -105,6 +108,9 @@ class _EmailSignupState extends State<EmailSignup> {
                 elevation: MaterialStatePropertyAll(
                   0,
                 ),
+              ),
+              child: Text(
+                "Cadastrar de outra maneira"
               ),
             ),
           ],

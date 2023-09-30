@@ -70,7 +70,7 @@ class _PhoneSignupState extends State<PhoneSignup> {
             ),
             if (erro)
               Text(
-                "Por favor, insira um e-mail válido.",
+                "Por favor, insira um telefone válido.",
                 style: TextStyle(
                   color: Colors.red, // Cor vermelha para indicar o erro
                 ),
@@ -79,9 +79,6 @@ class _PhoneSignupState extends State<PhoneSignup> {
               height: 30,
             ),
             ElevatedButton(
-              child: Text(
-                "Continuar"
-              ),
               onPressed: () {
                 if (phoneValido){
                   Navigator.pushNamed(context, "/name");
@@ -90,7 +87,16 @@ class _PhoneSignupState extends State<PhoneSignup> {
                     erro = true;
                   });
                 }
-              }  
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.black)
+              ),
+              child: Text(
+                "Continuar",
+                style: TextStyle(
+                  color: Colors.white
+                ),
+              ),
             ),
             ElevatedButton(
               child: Text(
