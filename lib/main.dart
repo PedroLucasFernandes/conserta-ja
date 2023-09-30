@@ -1,3 +1,4 @@
+import 'package:conserta_ja/pages/documents.dart';
 import 'package:conserta_ja/pages/emailsignup.dart';
 import 'package:conserta_ja/pages/loginpage.dart';
 import 'package:conserta_ja/pages/name.dart';
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
       initialRoute: "/loginpage",
       routes: {
         "/loginpage" : (context) => LoginPage(),
-        "/emailsignup" :(context) => EmailSignup(),
-        "/phonesignup" :(context) => PhoneSignup(),
-        "/name" :(context) => Name(),
+        "/emailsignup" : (context) => EmailSignup(),
+        "/phonesignup" : (context) => PhoneSignup(),
+        "/name" : (context) => Name(),
+        "/documents" : (context) => Documents() 
       },
       title: "Conserta Já!",
       debugShowCheckedModeBanner: false,

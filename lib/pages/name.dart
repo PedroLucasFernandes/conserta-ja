@@ -46,7 +46,7 @@ class Name extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-
+                  Navigator.pushNamed(context, "/documents");
               },
             ),
             SizedBox(height: 12,),
@@ -66,7 +66,7 @@ class Name extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-
+                  Navigator.pushNamed(context, "/documents");
               },
             ),          
           ],
