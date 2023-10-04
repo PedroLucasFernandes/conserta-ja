@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.conserta_ja">
     <application
-        android:label="conserta_ja"
+        android:label="Conserta Já"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
