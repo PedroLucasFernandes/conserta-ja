@@ -1,8 +1,10 @@
+import 'package:conserta_ja/pages/address_page.dart';
 import 'package:conserta_ja/pages/documents_page.dart';
 import 'package:conserta_ja/pages/email_signup.dart';
 import 'package:conserta_ja/pages/home_page.dart';
 import 'package:conserta_ja/pages/information_page.dart';
 import 'package:conserta_ja/pages/login_page.dart';
+import 'package:conserta_ja/pages/myprofile_page.dart';
 import 'package:conserta_ja/pages/phone_signup.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
         "/information_page" : (context) => InformationPage(),
         "/documents_page" : (context) => DocumentsPage(),
         "/home_page" : (context) => HomePage(),
+        "/myprofile_page" : (context) => MyProfile(),
+        "/address_page" : (context) => AddressPage(),
       },
       title: "Conserta Já!",
       debugShowCheckedModeBanner: false,

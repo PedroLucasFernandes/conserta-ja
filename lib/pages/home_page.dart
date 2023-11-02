@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ElevatedButton(
                     onPressed: (){
-
+                      Navigator.pushNamed(context, "/address_page");
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Color(0XFFCEA169))
@@ -97,42 +97,51 @@ class _HomePageState extends State<HomePage> {
                     image: "assets/consertogeral.png",
                     name: "Gerais"
                   ),
-                  Container(
-                    width: 273,
-                    height: 90,
-                    decoration: BoxDecoration(
-                      color: Color(0XFFCEA169),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Ofertas da semana!",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
+                  InkWell(
+                    onTap: (){
+
+                    },
+                    child: Container(
+                      width: 273,
+                      height: 94,
+                      decoration: BoxDecoration(
+                        color: Color(0XFFCEA169),
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
+                        )
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Ofertas da semana!",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                              ),
                             ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "Acesse já!",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 20,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  "Acesse já!",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                  ),
                                 ),
-                              ),
-                              Image.asset(
-                                "assets/cupom.png",
-                                height: 40,
-                              ),
-                            ],
-                          ),
-                        ],
+                                Image.asset(
+                                  "assets/cupom.png",
+                                  height: 40,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
