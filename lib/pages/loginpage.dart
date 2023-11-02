@@ -65,6 +65,10 @@ class LoginPage extends StatelessWidget {
                 ),
                 Text(
                   "Continuar com Google",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(width: 32),
               ],
@@ -73,6 +77,7 @@ class LoginPage extends StatelessWidget {
         
               },
               style: ButtonStyle(
+                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -99,6 +104,10 @@ class LoginPage extends StatelessWidget {
                 ),
                 Text(
                   "Continuar com Facebook",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(width: 32),
               ],
@@ -106,6 +115,7 @@ class LoginPage extends StatelessWidget {
               onPressed: () {
               },
               style: ButtonStyle(
+                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -132,6 +142,10 @@ class LoginPage extends StatelessWidget {
                 ),
                 Text(
                   "Continuar com E-mail",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(width: 32),
               ],
@@ -140,6 +154,7 @@ class LoginPage extends StatelessWidget {
                 Navigator.pushNamed(context, "/emailsignup");
               },
               style: ButtonStyle(
+                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -166,6 +181,10 @@ class LoginPage extends StatelessWidget {
                 ),
                 Text(
                   "Continuar com Telefone",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
                 SizedBox(width: 32),
               ],
@@ -174,6 +193,7 @@ class LoginPage extends StatelessWidget {
                 Navigator.pushNamed(context, "/phonesignup");
               },
               style: ButtonStyle(
+                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
                 shape: MaterialStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),

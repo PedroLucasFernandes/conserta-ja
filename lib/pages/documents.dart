@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 
 class Documents extends StatefulWidget {
   @override
@@ -7,31 +8,20 @@ class Documents extends StatefulWidget {
 }
 
 class _DocumentsState extends State<Documents> {
-  late CameraController _controller;
-  late List<CameraDescription> cameras;
+  XFile? _pickedImage;
+  XFile? _pickedImage2;
+  XFile? _pickedImage3;
+  XFile? _pickedImage4;
 
-  @override
-  void initState() {
-    super.initState();
-    // Inicialize a câmera
-    availableCameras().then((availableCameras) {
-      cameras = availableCameras;
-      if (cameras.isNotEmpty) {
-        _controller = CameraController(cameras[0], ResolutionPreset.medium);
-        _controller.initialize().then((_) {
-          if (!mounted) {
-            return;
-          }
-          setState(() {});
-        });
-      }
-    });
-  }
+  void _pickImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
 
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
+    if (pickedImage != null) {
+      setState(() {
+        _pickedImage = pickedImage;
+      });
+    }
   }
 
   @override
@@ -66,157 +56,241 @@ class _DocumentsState extends State<Documents> {
               height: 40,
             ),
             ElevatedButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Row(
+                style: ButtonStyle(
+                  backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
+                  shape: MaterialStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset(
-                      'assets/documento.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Você segurando o RG (Frente)",
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
-                if (_controller != null && _controller.value.isInitialized) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CameraPreview(_controller),
-                    ),
-                  );
-                }
-              },
+                  Row(
+                    children: [
+                      _pickedImage != null
+                          ? Image.file(
+                              File(_pickedImage!.path),
+                              height: 24,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              'assets/documento.png',
+                              height: 24,
+                              width: 24,
+                            ),
+                      SizedBox(width: 8),
+                    ],
+                  ),
+                  Text(
+                    "Você segurando o RG (Frente)",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(width: 32),
+                ],
+              ),
+                onPressed: () async {
+                  final picker = ImagePicker();
+                  final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+        
+                  if (pickedFile != null) {
+                    setState(() {
+                      _pickedImage = pickedFile;
+                    });
+                  }
+                },
+              ),
+            SizedBox(height: 10,),
+            ElevatedButton(
               style: ButtonStyle(
-                shape: MaterialStatePropertyAll(
+                backgroundColor: MaterialStateProperty.all(Color(0XFFFABB5B)),
+                shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 10,),
-            ElevatedButton(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/documento.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Você segurando o RG (Verso)",
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
-                if (_controller != null && _controller.value.isInitialized) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CameraPreview(_controller),
-                    ),
-                  );
+                  Row(
+                    children: [
+                      _pickedImage2 != null
+                          ? Image.file(
+                              File(_pickedImage2!.path),
+                              height: 24,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              'assets/documento.png',
+                              height: 24,
+                              width: 24,
+                            ),
+                      SizedBox(width: 8),
+                    ],
+                  ),
+                  Text(
+                    "Você segurando o RG (Verso)",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(width: 32),
+                ],
+              ),
+              onPressed: () async {
+                final picker = ImagePicker();
+                final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+                if (pickedFile != null) {
+                  setState(() {
+                    _pickedImage2 = pickedFile;
+                  });
                 }
               },
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton(
               style: ButtonStyle(
-                shape: MaterialStatePropertyAll(
+                backgroundColor: MaterialStateProperty.all(Color(0XFFFABB5B)),
+                shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 10,),
-            ElevatedButton(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/documento.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Foto apenas do documento",
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
-                if (_controller != null && _controller.value.isInitialized) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CameraPreview(_controller),
-                    ),
-                  );
+                  Row(
+                    children: [
+                      _pickedImage3 != null
+                          ? Image.file(
+                              File(_pickedImage3!.path),
+                              height: 24,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              'assets/documento.png',
+                              height: 24,
+                              width: 24,
+                            ),
+                      SizedBox(width: 8),
+                    ],
+                  ),
+                  Text(
+                    "Foto apenas do documento",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(width: 32),
+                ],
+              ),
+              onPressed: () async {
+                final picker = ImagePicker();
+                final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+                if (pickedFile != null) {
+                  setState(() {
+                    _pickedImage3 = pickedFile;
+                  });
                 }
               },
+            ),
+            SizedBox(height: 10,),
+            ElevatedButton(
               style: ButtonStyle(
-                shape: MaterialStatePropertyAll(
+                backgroundColor: MaterialStateProperty.all(Color(0XFFFABB5B)),
+                shape: MaterialStateProperty.all(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 10,),
-            ElevatedButton(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/perfil.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Sua foto (será usada no perfil)",
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
-                if (_controller != null && _controller.value.isInitialized) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CameraPreview(_controller),
-                    ),
-                  );
+                  Row(
+                    children: [
+                      _pickedImage4 != null
+                          ? Image.file(
+                              File(_pickedImage4!.path),
+                              height: 24,
+                              width: 24,
+                            )
+                          : Image.asset(
+                              'assets/perfil.png',
+                              height: 24,
+                              width: 24,
+                            ),
+                      SizedBox(width: 8),
+                    ],
+                  ),
+                  Text(
+                    "Sua foto (será usada no perfil)",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  SizedBox(width: 32),
+                ],
+              ),
+              onPressed: () async {
+                final picker = ImagePicker();
+                final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+                if (pickedFile != null) {
+                  setState(() {
+                    _pickedImage4 = pickedFile;
+                  });
                 }
               },
-              style: ButtonStyle(
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 45,
+                horizontal: 82,
+              ),
+              child: Text(
+                "Por gentileza, verifique se os documentos estão legíveis.",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 45,
+              ),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, "/homepage"); 
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black)
+                ),
+                child: Text(
+                  "Continuar",
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              child: Text(
+                "Cadastrar de outra maneira",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, "/loginpage");
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(
+                  Colors.white,
+                ),
+                elevation: MaterialStatePropertyAll(
+                  0,
                 ),
               ),
             ),

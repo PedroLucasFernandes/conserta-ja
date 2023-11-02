@@ -100,7 +100,11 @@ class _PhoneSignupState extends State<PhoneSignup> {
             ),
             ElevatedButton(
               child: Text(
-                "Cadastrar de outra maneira"
+                "Cadastrar de outra maneira",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
               onPressed: () {
                 Navigator.pop(context);

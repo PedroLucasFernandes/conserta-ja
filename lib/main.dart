@@ -1,5 +1,6 @@
 import 'package:conserta_ja/pages/documents.dart';
 import 'package:conserta_ja/pages/emailsignup.dart';
+import 'package:conserta_ja/pages/homepage.dart';
 import 'package:conserta_ja/pages/loginpage.dart';
 import 'package:conserta_ja/pages/name.dart';
 import 'package:conserta_ja/pages/phonesignup.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         "/emailsignup" : (context) => EmailSignup(),
         "/phonesignup" : (context) => PhoneSignup(),
         "/name" : (context) => Name(),
-        "/documents" : (context) => Documents() 
+        "/documents" : (context) => Documents(),
+        "/homepage" : (context) => HomePage(),
       },
       title: "Conserta Já!",
       debugShowCheckedModeBanner: false,
