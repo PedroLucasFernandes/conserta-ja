@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
-class Documents extends StatefulWidget {
+class DocumentsPage extends StatefulWidget {
   @override
-  _DocumentsState createState() => _DocumentsState();
+  _DocumentsPageState createState() => _DocumentsPageState();
 }
 
-class _DocumentsState extends State<Documents> {
+class _DocumentsPageState extends State<DocumentsPage> {
   XFile? _pickedImage;
   XFile? _pickedImage2;
   XFile? _pickedImage3;
