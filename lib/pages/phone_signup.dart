@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PhoneSignup extends StatefulWidget {
   @override
   _PhoneSignupState createState() => _PhoneSignupState();
 }
 
-class _PhoneSignupState extends State<PhoneSignup> {
+final _formKey = GlobalKey<FormState>();
 
-  TextEditingController phoneController = TextEditingController();
-  bool phoneValido = false;
-  bool erro = false;
+class _PhoneSignupState extends State<PhoneSignup> {
+  final phoneController = TextEditingController();
+  final maskFormatter = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {"#": RegExp(r'[0-9]')},
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -18,114 +22,111 @@ class _PhoneSignupState extends State<PhoneSignup> {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: Container(
+      body: Padding(
         padding: EdgeInsets.only(
           top: 60,
           left: 40,
           right: 40,
         ),
-        color: Colors.white,
-
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              width: 128,
-              height: 128,
-              child: Image.asset("assets/consertaja.png"),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                "Cadastre-se com seu telefone.",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(
+                width: 128,
+                height: 128,
+                child: Image.asset("assets/consertaja.png"),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "Cadastre-se com seu telefone.",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            TextFormField(
-              controller: phoneController,
-              keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                labelText: "Digite o Telefone:",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
+              SizedBox(
+                height: 50,
               ),
-              onChanged: (value) {
-                setState(() {
-                  // Validação do e-mail
-                  phoneValido = isValidPhone(value);
-                  erro = false; // Verifica se o e-mail é válido
-                });
-              },
-            ),
-            if (erro)
-              Text(
-                "Por favor, insira um telefone válido.",
-                style: TextStyle(
-                  color: Colors.red, // Cor vermelha para indicar o erro
+              TextFormField(
+                controller: phoneController,
+                inputFormatters: [maskFormatter],
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  labelText: "Digite o Telefone: (00) 12345-6789",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
                 ),
-              ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (phoneValido){
-                  Navigator.pushNamed(context, "/information_page");
-                } else{
+                onChanged: (value) {
                   setState(() {
-                    erro = true;
+          
                   });
-                }
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.black)
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Insira um número no formato (00) 12345-6789';
+                  }
+          
+                  final phonePattern = r'^\(\d{2}\) \d{5}-\d{4}$';
+          
+                  if (!RegExp(phonePattern).hasMatch(value)) {
+                    return 'Formato de telefone inválido. Use (00) 12345-6789';
+                  }
+          
+                  return null;
+                },
               ),
-              child: Text(
-                "Continuar",
-                style: TextStyle(
-                  color: Colors.white
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.pushNamed(context, "/information_page");
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black)
+                ),
+                child: Text(
+                  "Continuar",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
                 ),
               ),
-            ),
-            ElevatedButton(
-              child: Text(
-                "Cadastrar de outra maneira",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+              ElevatedButton(
+                child: Text(
+                  "Cadastrar de outra maneira",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Colors.white,
+                  ),
+                  elevation: MaterialStatePropertyAll(
+                    0,
+                  ),
                 ),
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
-                  Colors.white,
-                ),
-                elevation: MaterialStatePropertyAll(
-                  0,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  bool isValidPhone(String phoneNumber) {
-    return phoneNumber.isNotEmpty &&
-    !phoneNumber.contains(RegExp(r'[A-Za-z]'));
   }
 }
