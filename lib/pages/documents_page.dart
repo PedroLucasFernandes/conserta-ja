@@ -260,8 +260,17 @@ class _DocumentsPageState extends State<DocumentsPage> {
                 horizontal: 45,
               ),
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, "/home_page"); 
+                onPressed: () {     
+                  if (_pickedImage != null && _pickedImage2 != null && _pickedImage3 != null && _pickedImage4 != null) {
+                    Navigator.pushNamed(context, "/home_page");
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Envie todas as imagens necessárias'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.black)

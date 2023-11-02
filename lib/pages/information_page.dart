@@ -124,7 +124,7 @@ class _InformationPageState extends State<InformationPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, "/home_page");
+                        Navigator.pushNamed(context, "/documents_page");
                     }
                   },
                   style: ButtonStyle(
@@ -153,7 +153,7 @@ class _InformationPageState extends State<InformationPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, "/home_page");
+                        Navigator.pushNamed(context, "/documents_page");
                     }
                   },
                   style: ButtonStyle(
