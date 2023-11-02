@@ -1,3 +1,4 @@
+import 'package:conserta_ja/widgets/login_button.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -49,157 +50,36 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            ElevatedButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/google.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Continuar com Google",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
-        
+            LoginButton(
+              image: "assets/google.png",
+              tittle: "Continuar com Google",
+              onPressed: (){
+
               },
-              style: ButtonStyle(
-                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/facebook.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Continuar com Facebook",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
+            SizedBox(height: 10),
+            LoginButton(
+              image: "assets/facebook.png",
+              tittle: "Continuar com Facebook",
+              onPressed: (){
+
               },
-              style: ButtonStyle(
-                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/email.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Continuar com E-mail",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
+            SizedBox(height: 10),
+            LoginButton(
+              image: "assets/email.png",
+              tittle: "Continuar com E-mail",
+              onPressed: (){
                 Navigator.pushNamed(context, "/email_signup");
               },
-              style: ButtonStyle(
-                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
             ),
-            SizedBox(
-              height: 10,
-            ),            
-            ElevatedButton(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                Row(
-                  children: [
-                    Image.asset(
-                      'assets/telefone.png',
-                      height: 24,
-                      width: 24,
-                    ),
-                    SizedBox(width: 8),
-                  ],
-                ),
-                Text(
-                  "Continuar com Telefone",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(width: 32),
-              ],
-            ),
-              onPressed: () {
+            SizedBox(height: 10,),            
+            LoginButton(
+              image: "assets/telefone.png",
+              tittle: "Continuar com Telefone",
+              onPressed: (){
                 Navigator.pushNamed(context, "/phone_signup");
               },
-              style: ButtonStyle(
-                backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
-                shape: MaterialStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                ),
-              ),
             ),
           ],
         ),
