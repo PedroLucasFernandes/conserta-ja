@@ -151,7 +151,7 @@ class LoginPage extends StatelessWidget {
               ],
             ),
               onPressed: () {
-                Navigator.pushNamed(context, "/emailsignup");
+                Navigator.pushNamed(context, "/email_signup");
               },
               style: ButtonStyle(
                 backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),
@@ -190,7 +190,7 @@ class LoginPage extends StatelessWidget {
               ],
             ),
               onPressed: () {
-                Navigator.pushNamed(context, "/phonesignup");
+                Navigator.pushNamed(context, "/phone_signup");
               },
               style: ButtonStyle(
                 backgroundColor:MaterialStatePropertyAll(Color(0XFFFABB5B)),

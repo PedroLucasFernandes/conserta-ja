@@ -80,7 +80,7 @@ class _EmailSignupState extends State<EmailSignup> {
             ElevatedButton(
               onPressed: () {
                 if (emailValido){
-                  Navigator.pushNamed(context, "/name");
+                  Navigator.pushNamed(context, "/information_page");
                 } else{
                   setState(() {
                     erro = true;

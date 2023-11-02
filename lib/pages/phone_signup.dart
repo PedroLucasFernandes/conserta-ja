@@ -81,7 +81,7 @@ class _PhoneSignupState extends State<PhoneSignup> {
             ElevatedButton(
               onPressed: () {
                 if (phoneValido){
-                  Navigator.pushNamed(context, "/name");
+                  Navigator.pushNamed(context, "/information_page");
                 } else{
                   setState(() {
                     erro = true;

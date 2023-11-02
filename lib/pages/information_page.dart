@@ -46,7 +46,7 @@ class InformationPage extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                  Navigator.pushNamed(context, "/documents");
+                  Navigator.pushNamed(context, "/documents_page");
               },
             ),
             SizedBox(height: 12,),
@@ -66,7 +66,7 @@ class InformationPage extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                  Navigator.pushNamed(context, "/documents");
+                  Navigator.pushNamed(context, "/documents_page");
               },
             ),          
           ],

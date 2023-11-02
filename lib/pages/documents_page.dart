@@ -261,7 +261,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
               ),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, "/homepage"); 
+                  Navigator.pushNamed(context, "/home_page"); 
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.black)
@@ -283,7 +283,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, "/loginpage");
+                Navigator.pushNamed(context, "/login_page");
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(

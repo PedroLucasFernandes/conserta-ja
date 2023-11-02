@@ -1,9 +1,9 @@
-import 'package:conserta_ja/pages/documents.dart';
-import 'package:conserta_ja/pages/emailsignup.dart';
-import 'package:conserta_ja/pages/homepage.dart';
-import 'package:conserta_ja/pages/loginpage.dart';
-import 'package:conserta_ja/pages/name.dart';
-import 'package:conserta_ja/pages/phonesignup.dart';
+import 'package:conserta_ja/pages/documents_page.dart';
+import 'package:conserta_ja/pages/email_signup.dart';
+import 'package:conserta_ja/pages/home_page.dart';
+import 'package:conserta_ja/pages/information_page.dart';
+import 'package:conserta_ja/pages/login_page.dart';
+import 'package:conserta_ja/pages/phone_signup.dart';
 import 'package:flutter/material.dart';
 
 void main () => runApp(MyApp());
@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: "/loginpage",
+      initialRoute: "/login_page",
       routes: {
-        "/loginpage" : (context) => LoginPage(),
-        "/emailsignup" : (context) => EmailSignup(),
-        "/phonesignup" : (context) => PhoneSignup(),
-        "/name" : (context) => Name(),
-        "/documents" : (context) => Documents(),
-        "/homepage" : (context) => HomePage(),
+        "/login_page" : (context) => LoginPage(),
+        "/email_signup" : (context) => EmailSignup(),
+        "/phone_signup" : (context) => PhoneSignup(),
+        "/information_page" : (context) => InformationPage(),
+        "/documents_page" : (context) => DocumentsPage(),
+        "/home_page" : (context) => HomePage(),
       },
       title: "Conserta Já!",
       debugShowCheckedModeBanner: false,
