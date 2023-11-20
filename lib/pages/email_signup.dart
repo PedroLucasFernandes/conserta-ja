@@ -5,11 +5,16 @@ class EmailSignup extends StatefulWidget {
   _EmailSignupState createState() => _EmailSignupState();
 }
 
+final _formKey = GlobalKey<FormState>();
+
 class _EmailSignupState extends State<EmailSignup> {
 
   TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool emailValido = false;
-  bool erro = false;
+  bool erroEmail = false;
+  bool senhaValida = false;
+  bool erroSenha = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,106 +30,130 @@ class _EmailSignupState extends State<EmailSignup> {
           right: 40,
         ),
         color: Colors.white,
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              width: 128,
-              height: 128,
-              child: Image.asset("assets/consertaja.png"),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                "Cadastre-se com seu e-mail.",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(
+                width: 128,
+                height: 128,
+                child: Image.asset("assets/consertaja.png"),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "Cadastre-se com seu e-mail.",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            TextFormField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: "Digite o E-mail:",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
+              SizedBox(
+                height: 50,
+              ),
+              TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: "Digite o E-mail:",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'O e-mail não pode ser vazio';
+                  }
+                  if (!value.contains("@")) {
+                    return 'Insira um e-mail válido';
+                  }
+                  return null;
+                },
+              ),
+              if (erroEmail)
+                Text(
+                  "Por favor, insira um e-mail válido.",
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
+                TextFormField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    labelText: "Senha",
+                    labelStyle: TextStyle(
+                      color: Colors.black38,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                    ),
+                  ),
+                  obscureText: true,
+                    validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'A senha deve conter entre 8 e 24 caracteres';
+                    }
+                    if (value.length < 8 || value.length > 24) {
+                      return 'A senha deve conter entre 8 e 24 caracteres';
+                    }
+                    return null;
+                  },
+                ),
+                if (erroSenha)
+                  Text(
+                    "A senha deve conter entre 8 e 24 caracteres.",
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    Navigator.pushNamed(context, "/information_page");
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black)
+                ),
+                child: Text(
+                  "Continuar",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-              onChanged: (value) {
-                setState(() {
-                  // Validação do e-mail
-                  emailValido = isValidEmail(value);
-                  erro = false; // Verifica se o e-mail é válido
-                });
-              },
-            ),
-            if (erro)
-              Text(
-                "Por favor, insira um e-mail válido.",
-                style: TextStyle(
-                  color: Colors.red, // Cor vermelha para indicar o erro
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Colors.white,
+                  ),
+                  elevation: MaterialStatePropertyAll(
+                    0,
+                  ),
+                ),
+                child: Text(
+                  "Cadastrar de outra maneira",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
               ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (emailValido){
-                  Navigator.pushNamed(context, "/information_page");
-                } else{
-                  setState(() {
-                    erro = true;
-                  });
-                }
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.black)
-              ),
-              child: Text(
-                "Continuar",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
-                  Colors.white,
-                ),
-                elevation: MaterialStatePropertyAll(
-                  0,
-                ),
-              ),
-              child: Text(
-                "Cadastrar de outra maneira",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  bool isValidEmail(String email) {
-    return email.contains('@') &&
-    !email.contains(' ');
   }
 }

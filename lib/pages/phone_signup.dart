@@ -14,6 +14,7 @@ class _PhoneSignupState extends State<PhoneSignup> {
     mask: '(##) #####-####',
     filter: {"#": RegExp(r'[0-9]')},
   );
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +84,27 @@ class _PhoneSignupState extends State<PhoneSignup> {
           
                   return null;
                 },
+              ),
+              TextFormField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  labelText: "Senha",
+                  labelStyle: TextStyle(
+                    color: Colors.black38,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 20,
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'A senha deve conter entre 8 e 24 caracteres';
+                  }
+                  if (value.length < 8 || value.length > 24) {
+                    return 'A senha deve conter entre 8 e 24 caracteres';
+                  }
+                  return null;
+                },
+                obscureText: true,
               ),
               SizedBox(
                 height: 30,

@@ -52,7 +52,7 @@ class _AddressPageState extends State<AddressPage> {
                 TextFormField(
                   controller: cepController,
                   inputFormatters: [maskFormatter],
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelText: "CEP:",
                     labelStyle: TextStyle(

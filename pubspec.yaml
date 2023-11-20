@@ -8,12 +8,13 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter  # A definição do SDK do Flutter deve estar apenas aqui
+    sdk: flutter
   flutter_svg: ^2.0.7
   cupertino_icons: ^1.0.2
   camera: ^0.10.5+5
   image_picker: ^1.0.4
   mask_text_input_formatter: ^2.5.0
+  http: ^0.13.3
 
 dev_dependencies:
   flutter_test:
