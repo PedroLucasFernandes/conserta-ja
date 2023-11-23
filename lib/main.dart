@@ -1,10 +1,14 @@
 import 'package:conserta_ja/pages/address_page.dart';
 import 'package:conserta_ja/pages/documents_page.dart';
+import 'package:conserta_ja/pages/email_login.dart';
+import 'package:conserta_ja/pages/email_page.dart';
 import 'package:conserta_ja/pages/email_signup.dart';
 import 'package:conserta_ja/pages/home_page.dart';
 import 'package:conserta_ja/pages/information_page.dart';
 import 'package:conserta_ja/pages/login_page.dart';
 import 'package:conserta_ja/pages/myprofile_page.dart';
+import 'package:conserta_ja/pages/phone_login.dart';
+import 'package:conserta_ja/pages/phone_page.dart';
 import 'package:conserta_ja/pages/phone_signup.dart';
 import 'package:flutter/material.dart';
 
@@ -18,8 +22,12 @@ class MyApp extends StatelessWidget {
       initialRoute: "/login_page",
       routes: {
         "/login_page" : (context) => LoginPage(),
+        "/email_page" : (context) => EmailPage(),
         "/email_signup" : (context) => EmailSignup(),
+        "/email_login" : (context) => EmailLogin(),
+        "/phone_page" : (context) => PhonePage(),
         "/phone_signup" : (context) => PhoneSignup(),
+        "/phone_login" : (context) => PhoneLogin(),
         "/information_page" : (context) => InformationPage(),
         "/documents_page" : (context) => DocumentsPage(),
         "/home_page" : (context) => HomePage(),

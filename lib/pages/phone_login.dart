@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class PhoneSignup extends StatefulWidget {
+class PhoneLogin extends StatefulWidget {
   @override
-  _PhoneSignupState createState() => _PhoneSignupState();
+  _PhoneLoginState createState() => _PhoneLoginState();
 }
 
 final _formKey = GlobalKey<FormState>();
 
-class _PhoneSignupState extends State<PhoneSignup> {
+class _PhoneLoginState extends State<PhoneLogin> {
   final phoneController = TextEditingController();
   final maskFormatter = MaskTextInputFormatter(
     mask: '(##) #####-####',
@@ -44,7 +44,7 @@ class _PhoneSignupState extends State<PhoneSignup> {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "Cadastro via telefone.",
+                  "Login via telefone.",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,

@@ -70,7 +70,7 @@ class LoginPage extends StatelessWidget {
               image: "assets/email.png",
               tittle: "Continuar com E-mail",
               onPressed: (){
-                Navigator.pushNamed(context, "/email_signup");
+                Navigator.pushNamed(context, "/email_page");
               },
             ),
             SizedBox(height: 10,),            
@@ -78,7 +78,7 @@ class LoginPage extends StatelessWidget {
               image: "assets/telefone.png",
               tittle: "Continuar com Telefone",
               onPressed: (){
-                Navigator.pushNamed(context, "/phone_signup");
+                Navigator.pushNamed(context, "/phone_page");
               },
             ),
           ],

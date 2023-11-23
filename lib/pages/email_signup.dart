@@ -45,7 +45,7 @@ class _EmailSignupState extends State<EmailSignup> {
               Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "Cadastre-se com seu e-mail.",
+                  "Cadastro via e-mail.",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
