@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -110,9 +111,25 @@ class _PhoneLoginState extends State<PhoneLogin> {
                 height: 30,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, "/information_page");
+                    String phone = phoneController.text;
+                    String password = passwordController.text;
+
+                    bool loginSuccess = await DatabaseHelper().loginUser(
+                      phone: phone,
+                      password: password,
+                    );
+
+                    if (loginSuccess) {
+                      Navigator.pushNamed(context, "/home_page");
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Telefone ou senha incorretos. Tente novamente.'),
+                        ),
+                      );
+                    }
                   }
                 },
                 style: ButtonStyle(

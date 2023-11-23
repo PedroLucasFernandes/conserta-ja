@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:flutter/material.dart';
 
 class EmailLogin extends StatefulWidget {
@@ -115,9 +116,25 @@ class _EmailLoginState extends State<EmailLogin> {
                 height: 30,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, "/information_page");
+                    String email = emailController.text;
+                    String password = passwordController.text;
+
+                    bool loginSuccess = await DatabaseHelper().loginUser(
+                      email: email,
+                      password: password,
+                    );
+
+                    if (loginSuccess) {
+                      Navigator.pushNamed(context, "/home_page");
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('E-mail ou senha incorretos. Tente novamente.'),
+                        ),
+                      );
+                    }
                   }
                 },
                 style: ButtonStyle(

@@ -31,7 +31,16 @@ class DatabaseHelper {
 
   Future<void> insertUser({String? email, String? phone, String? password}) async {
     final Database db = await database;
-    await db.insert(tableName, {'email': email, 'phone': phone, 'password': password});
+
+    try {
+      await db.insert(tableName, {
+        'email': email,
+        'phone': phone,
+        'password': password,
+      });
+    } catch (e) {
+
+    }
   }
 
   Future<List<Map<String, dynamic>>> getUsers() async {
@@ -43,8 +52,8 @@ class DatabaseHelper {
     final Database db = await database;
     var result = await db.query(
       tableName,
-      where: 'email = ? OR phone = ? AND password = ?',
-      whereArgs: [email, phone, password],
+      where: '(email = ? OR phone IS NULL) AND password = ?',
+      whereArgs: [email, password],
     );
     return result.isNotEmpty;
   }
