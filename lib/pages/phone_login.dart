@@ -134,7 +134,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/login_page");
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(

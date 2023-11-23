@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:flutter/material.dart';
 
 class EmailSignup extends StatefulWidget {
@@ -115,8 +116,12 @@ class _EmailSignupState extends State<EmailSignup> {
                 height: 30,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+                    String email = emailController.text;
+                    String password = passwordController.text;
+                    await DatabaseHelper().insertUser(phone: email, password: password);
+
                     Navigator.pushNamed(context, "/information_page");
                   }
                 },
@@ -132,7 +137,7 @@ class _EmailSignupState extends State<EmailSignup> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, "/login_page");
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(
