@@ -12,7 +12,10 @@ import 'package:conserta_ja/pages/phone_page.dart';
 import 'package:conserta_ja/pages/phone_signup.dart';
 import 'package:flutter/material.dart';
 
-void main () => runApp(MyApp());
+void main () {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());  
+}
 
 class MyApp extends StatelessWidget {
 

@@ -120,7 +120,7 @@ class _EmailSignupState extends State<EmailSignup> {
                   if (_formKey.currentState!.validate()) {
                     String email = emailController.text;
                     String password = passwordController.text;
-                    await DatabaseHelper().insertUser(phone: email, password: password);
+                    await DatabaseHelper().insertUser(email: email, password: password);
 
                     Navigator.pushNamed(context, "/information_page");
                   }
