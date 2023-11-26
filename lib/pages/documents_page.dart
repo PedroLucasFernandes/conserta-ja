@@ -1,3 +1,5 @@
+import 'package:conserta_ja/BD/database_helper.dart';
+import 'package:conserta_ja/models/user.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -26,6 +28,9 @@ class _DocumentsPageState extends State<DocumentsPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final args = ModalRoute.of(context)!.settings.arguments as User;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -260,8 +265,10 @@ class _DocumentsPageState extends State<DocumentsPage> {
                 horizontal: 45,
               ),
               child: ElevatedButton(
-                onPressed: () {     
+                onPressed: () async {     
                   if (_pickedImage != null && _pickedImage2 != null && _pickedImage3 != null && _pickedImage4 != null) {
+                    await DatabaseHelper().insertUser(args);
+                    
                     Navigator.pushNamed(context, "/home_page");
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

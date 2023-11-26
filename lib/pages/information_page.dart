@@ -1,3 +1,4 @@
+import 'package:conserta_ja/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -9,6 +10,9 @@ class InformationPage extends StatefulWidget {
 }
 
 class _InformationPageState extends State<InformationPage> {
+
+  final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _dateController = TextEditingController();
   final _dateMaskFormatter = MaskTextInputFormatter(
     mask: '##/##/####',
@@ -19,6 +23,9 @@ class _InformationPageState extends State<InformationPage> {
 
   @override
   Widget build(BuildContext context) {
+    
+    final args = ModalRoute.of(context)!.settings.arguments as User;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -53,6 +60,7 @@ class _InformationPageState extends State<InformationPage> {
               ),
               TextFormField(
                 keyboardType: TextInputType.name,
+                controller: _nameController,
                 decoration: InputDecoration(
                   labelText: "Seu nome completo",
                   labelStyle: TextStyle(
@@ -122,9 +130,13 @@ class _InformationPageState extends State<InformationPage> {
                   right: 30,
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, "/documents_page");
+                      args.name = _nameController.text;
+                      args.birthday = _dateController.text;
+                      args.isClient = 1;
+
+                      Navigator.pushNamed(context, "/documents_page", arguments: args);
                     }
                   },
                   style: ButtonStyle(
@@ -153,7 +165,11 @@ class _InformationPageState extends State<InformationPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, "/documents_page");
+                      args.name = _nameController.text;
+                      args.birthday = _dateController.text;
+                      args.isClient = 0;
+
+                      Navigator.pushNamed(context, "/documents_page", arguments: args);
                     }
                   },
                   style: ButtonStyle(

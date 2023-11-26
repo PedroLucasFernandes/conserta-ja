@@ -1,3 +1,4 @@
+import 'package:conserta_ja/models/user.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -12,7 +13,7 @@ class DatabaseHelper {
   }
 
   Future<Database> initDatabase() async {
-    String path = join(await getDatabasesPath(), 'app_database.db');
+    String path = join(await getDatabasesPath(), 'dbteste.db');
     return await openDatabase(
       path,
       version: 1,
@@ -22,24 +23,31 @@ class DatabaseHelper {
             id INTEGER PRIMARY KEY,
             email TEXT,
             phone TEXT,
-            password TEXT
+            password TEXT,
+            name TEXT,
+            birthday TEXT,
+            isClient TINYINT
           )
         ''');
       },
     );
   }
 
-  Future<void> insertUser({String? email, String? phone, String? password}) async {
+  Future<void> insertUser(User user) async {
     final Database db = await database;
 
     try {
       await db.insert(tableName, {
-        'email': email,
-        'phone': phone,
-        'password': password,
+        'email': user.email,
+        'phone': user.phone,
+        'password': user.password,
+        'name': user.name,
+        'birthday': user.birthday,
+        'isClient': user.isClient
       });
+      print('Usuário inserido com sucesso!!!');
     } catch (e) {
-
+      print('Erro ao inserir usuário no banco de dados: $e');
     }
   }
 
@@ -48,13 +56,34 @@ class DatabaseHelper {
     return await db.query(tableName);
   }
 
-  Future<bool> loginUser({String? email, String? phone, String? password}) async {
+  Future<bool> loginUserEmail({String? email, String? password}) async {
     final Database db = await database;
     var result = await db.query(
       tableName,
-      where: '(email = ? OR phone IS NULL) AND password = ?',
+      where: 'email = ? AND password = ?',
       whereArgs: [email, password],
     );
     return result.isNotEmpty;
+  }
+
+  Future<bool> loginUserPhone({String? phone, String? password}) async {
+    final Database db = await database;
+    var result = await db.query(
+      tableName,
+      where: 'phone = ? AND password = ?',
+      whereArgs: [phone, password],
+    );
+    return result.isNotEmpty;
+  }
+
+  Future<Map<String, dynamic>?> getUserByIdentifier(String identifier) async {
+    final Database db = await database;
+    List<Map<String, dynamic>> result = await db.query(
+      tableName,
+      where: 'email = ? OR phone = ?',
+      whereArgs: [identifier, identifier],
+    );
+
+    return result.isNotEmpty ? result.first : null;
   }
 }

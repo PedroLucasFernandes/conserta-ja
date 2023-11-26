@@ -95,7 +95,7 @@ class _EmailLoginState extends State<EmailLogin> {
                     ),
                   ),
                   obscureText: true,
-                    validator: (value) {
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'A senha deve conter entre 8 e 24 caracteres';
                     }
@@ -121,7 +121,7 @@ class _EmailLoginState extends State<EmailLogin> {
                     String email = emailController.text;
                     String password = passwordController.text;
 
-                    bool loginSuccess = await DatabaseHelper().loginUser(
+                    bool loginSuccess = await DatabaseHelper().loginUserEmail(
                       email: email,
                       password: password,
                     );

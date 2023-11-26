@@ -56,7 +56,7 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                 ),
                 Text(
-                  "$name",
+                  name,
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,

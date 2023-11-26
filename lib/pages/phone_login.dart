@@ -116,7 +116,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
                     String phone = phoneController.text;
                     String password = passwordController.text;
 
-                    bool loginSuccess = await DatabaseHelper().loginUser(
+                    bool loginSuccess = await DatabaseHelper().loginUserPhone(
                       phone: phone,
                       password: password,
                     );
