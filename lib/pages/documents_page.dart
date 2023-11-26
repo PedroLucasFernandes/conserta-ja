@@ -269,7 +269,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
                   if (_pickedImage != null && _pickedImage2 != null && _pickedImage3 != null && _pickedImage4 != null) {
                     await DatabaseHelper().insertUser(args);
                     
-                    Navigator.pushNamed(context, "/home_page");
+                    Navigator.pushNamed(context, "/home_page", arguments: args.email == null ? args.phone : args.email);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

@@ -15,6 +15,7 @@ class _MyProfileState extends State<MyProfile> {
   @override
   void initState() {
     super.initState();
+    userData = {'name': ""};
   }
 
   @override
