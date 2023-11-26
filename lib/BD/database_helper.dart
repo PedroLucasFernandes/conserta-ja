@@ -45,9 +45,8 @@ class DatabaseHelper {
         'birthday': user.birthday,
         'isClient': user.isClient
       });
-      print('Usuário inserido com sucesso!!!');
     } catch (e) {
-      print('Erro ao inserir usuário no banco de dados: $e');
+      
     }
   }
 
