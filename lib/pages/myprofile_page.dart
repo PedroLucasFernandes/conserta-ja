@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:flutter/material.dart';
 
 class MyProfile extends StatefulWidget {
@@ -9,8 +10,28 @@ class MyProfile extends StatefulWidget {
 
 class _MyProfileState extends State<MyProfile> {
 
-  final String name = "Seu Nome Completo";
+  late Map<String, dynamic> userData;
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    final args = ModalRoute.of(context)!.settings.arguments as String;
+    super.didChangeDependencies();
+    
+    DatabaseHelper().getUserByIdentifier(args).then((user) {
+      if (user != null) {
+        setState(() {
+          userData = user;
+        });
+      } else {
+        
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +77,7 @@ class _MyProfileState extends State<MyProfile> {
                   ),
                 ),
                 Text(
-                  name,
+                  userData['name'],
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black,

@@ -127,7 +127,7 @@ class _EmailLoginState extends State<EmailLogin> {
                     );
 
                     if (loginSuccess) {
-                      Navigator.pushNamed(context, "/home_page");
+                      Navigator.pushNamed(context, "/home_page", arguments: email);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

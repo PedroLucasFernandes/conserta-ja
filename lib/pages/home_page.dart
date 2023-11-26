@@ -11,6 +11,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
+    final args = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -40,7 +43,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).pushNamed("/myprofile_page");
+                      Navigator.of(context).pushNamed("/myprofile_page", arguments: args);
                     },
                     child: Icon(
                       Icons.person,
