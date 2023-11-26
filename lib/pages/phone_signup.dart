@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:conserta_ja/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -115,9 +116,19 @@ class _PhoneSignupState extends State<PhoneSignup> {
                   if (_formKey.currentState!.validate()) {
                     String phone = phoneController.text;
                     String password = passwordController.text;
-                    User user = User(phone: phone, password: password);
+                    bool isPhoneRegistered = await DatabaseHelper().isPhoneAlreadyRegistered(phone);
 
-                    Navigator.pushNamed(context, "/information_page", arguments: user);
+                    if (isPhoneRegistered) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Telefone já cadastrado. Por favor, digite outro.'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    } else {
+                      User user = User(phone: phone, password: password);
+                      Navigator.pushNamed(context, "/information_page", arguments: user);
+                    }
                   }
                 },
                 style: ButtonStyle(

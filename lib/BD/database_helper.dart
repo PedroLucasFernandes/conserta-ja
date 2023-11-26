@@ -55,6 +55,26 @@ class DatabaseHelper {
     return await db.query(tableName);
   }
 
+  Future<bool> isEmailAlreadyRegistered(String email) async {
+    final Database db = await database;
+    var result = await db.query(
+      tableName,
+      where: 'email = ?',
+      whereArgs: [email],
+    );
+    return result.isNotEmpty;
+  }
+
+  Future<bool> isPhoneAlreadyRegistered(String phone) async {
+    final Database db = await database;
+    var result = await db.query(
+      tableName,
+      where: 'phone = ?',
+      whereArgs: [phone],
+    );
+    return result.isNotEmpty;
+  }
+
   Future<bool> loginUserEmail({String? email, String? password}) async {
     final Database db = await database;
     var result = await db.query(

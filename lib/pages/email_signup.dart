@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:conserta_ja/models/user.dart';
 import 'package:flutter/material.dart';
 
@@ -120,9 +121,19 @@ class _EmailSignupState extends State<EmailSignup> {
                   if (_formKey.currentState!.validate()) {
                     String email = emailController.text;
                     String password = passwordController.text;
-                    User user = User(email: email, password: password);
+                    bool isEmailRegistered = await DatabaseHelper().isEmailAlreadyRegistered(email);
 
-                    Navigator.pushNamed(context, "/information_page", arguments: user);
+                    if (isEmailRegistered) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('E-mail já cadastrado. Por favor, digite outro.'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    } else {
+                      User user = User(email: email, password: password);
+                      Navigator.pushNamed(context, "/information_page", arguments: user);
+                    }
                   }
                 },
                 style: ButtonStyle(
