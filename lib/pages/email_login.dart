@@ -127,7 +127,7 @@ class _EmailLoginState extends State<EmailLogin> {
                     );
 
                     if (loginSuccess) {
-                      Navigator.pushNamed(context, "/home_page", arguments: email);
+                      Navigator.pushNamedAndRemoveUntil(context, "/home_page", arguments: email, (Route<dynamic> route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

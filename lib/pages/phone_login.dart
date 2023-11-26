@@ -122,7 +122,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
                     );
 
                     if (loginSuccess) {
-                      Navigator.pushNamed(context, "/home_page", arguments: phone);
+                      Navigator.pushNamedAndRemoveUntil(context, "/home_page", arguments: phone, (Route<dynamic> route) => false);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

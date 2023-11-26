@@ -139,7 +139,7 @@ class _PhoneSignupState extends State<PhoneSignup> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/login_page");
+                  Navigator.pushNamedAndRemoveUntil(context, "/login_page", (Route<dynamic> route) => false);
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(

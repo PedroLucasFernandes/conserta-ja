@@ -269,7 +269,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
                   if (_pickedImage != null && _pickedImage2 != null && _pickedImage3 != null && _pickedImage4 != null) {
                     await DatabaseHelper().insertUser(args);
                     
-                    Navigator.pushNamed(context, "/home_page", arguments: args.email == null ? args.phone : args.email);
+                    Navigator.pushNamedAndRemoveUntil(context, "/home_page", arguments: args.email == null ? args.phone : args.email, (Route<dynamic> route) => false);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -299,7 +299,7 @@ class _DocumentsPageState extends State<DocumentsPage> {
                 ),
               ),
               onPressed: () {
-                Navigator.pushNamed(context, "/login_page");
+                Navigator.pushNamedAndRemoveUntil(context, "/login_page", (Route<dynamic> route) => false);
               },
               style: ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(

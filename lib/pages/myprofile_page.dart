@@ -139,7 +139,9 @@ class _MyProfileState extends State<MyProfile> {
                 Container(
                   width: 200,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.of(context).pushReplacementNamed("/login_page"),
+                    onPressed: () {
+                      Navigator.of(context).pushNamedAndRemoveUntil("/login_page", (Route<dynamic> route) => false);
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.white),
                       shape: MaterialStatePropertyAll(
