@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class _MyProfileState extends State<MyProfile> {
   @override
   void initState() {
     super.initState();
-    userData = {'name': ""};
+    userData = {'name': "", 'profileImage': ""};
   }
 
   @override
@@ -70,11 +71,14 @@ class _MyProfileState extends State<MyProfile> {
                   width: 218,
                   height: 204,
                   child: ClipOval(
-                    child: Image.asset(
-                      "assets/perfil.png",
-                      fit: BoxFit.cover,
-                      color: Colors.black,  
-                    ),
+                    child: userData['profileImage'].isNotEmpty
+                    ? Image.file(
+                        File(userData['profileImage']),
+                        fit: BoxFit.cover,
+                        width: 200.0,
+                        height: 200.0,
+                      )
+                    : Container(),
                   ),
                 ),
                 Text(

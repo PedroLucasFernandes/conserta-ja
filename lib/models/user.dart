@@ -5,6 +5,7 @@ class User {
   String? name;
   String? birthday;
   int? isClient;
+  String? profileImage;
 
-  User({this.email, this.phone, this.password, this.name, this.birthday, this.isClient});
+  User({this.email, this.phone, this.password, this.name, this.birthday, this.isClient, this.profileImage});
 }

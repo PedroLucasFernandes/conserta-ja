@@ -13,7 +13,7 @@ class DatabaseHelper {
   }
 
   Future<Database> initDatabase() async {
-    String path = join(await getDatabasesPath(), 'dbteste.db');
+    String path = join(await getDatabasesPath(), 'dbtesteperfil.db');
     return await openDatabase(
       path,
       version: 1,
@@ -26,7 +26,8 @@ class DatabaseHelper {
             password TEXT,
             name TEXT,
             birthday TEXT,
-            isClient TINYINT
+            isClient TINYINT,
+            profileImage TEXT
           )
         ''');
       },
@@ -43,7 +44,8 @@ class DatabaseHelper {
         'password': user.password,
         'name': user.name,
         'birthday': user.birthday,
-        'isClient': user.isClient
+        'isClient': user.isClient,
+        'profileImage': user.profileImage
       });
     } catch (e) {
       

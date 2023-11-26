@@ -267,8 +267,9 @@ class _DocumentsPageState extends State<DocumentsPage> {
               child: ElevatedButton(
                 onPressed: () async {     
                   if (_pickedImage != null && _pickedImage2 != null && _pickedImage3 != null && _pickedImage4 != null) {
+                    args.profileImage = _pickedImage4!.path;
                     await DatabaseHelper().insertUser(args);
-                    
+
                     Navigator.pushNamedAndRemoveUntil(context, "/home_page", arguments: args.email == null ? args.phone : args.email, (Route<dynamic> route) => false);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
