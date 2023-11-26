@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:conserta_ja/widgets/named_box.dart';
 import 'package:flutter/material.dart';
 
@@ -45,10 +48,37 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.of(context).pushNamed("/myprofile_page", arguments: args);
                     },
-                    child: Icon(
-                      Icons.person,
-                      color: Color(0XFFCEA169),
-                      size: 45.0,
+                    child: Hero(
+                      tag: 'profileImage',
+                      child: CircleAvatar(
+                        radius: 22,
+                        backgroundColor: Color(0XFFCEA169),
+                        child: ClipOval(
+                          child: FutureBuilder<Map<String, dynamic>?>(
+                            future: DatabaseHelper().getUserByIdentifier(args), // Supondo que args seja o identificador do usuário
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.done) {
+                                if (snapshot.hasData) {
+                                  String? profileImage = snapshot.data!['profileImage'];
+                                  if (profileImage != null && profileImage.isNotEmpty) {
+                                    return Image.file(
+                                      File(profileImage),
+                                      fit: BoxFit.cover,
+                                      width: 40,
+                                      height: 40,
+                                    );
+                                  }
+                                }
+                              }
+                              return Icon(
+                                Icons.person,
+                                color: Colors.white,
+                                size: 200.0,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
