@@ -160,7 +160,7 @@ class _EmailLoginState extends State<EmailLogin> {
                   ),
                 ),
                 child: Text(
-                  "Cadastrar de outra maneira",
+                  "Continuar de outra maneira",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,

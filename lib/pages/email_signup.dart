@@ -159,7 +159,7 @@ class _EmailSignupState extends State<EmailSignup> {
                   ),
                 ),
                 child: Text(
-                  "Cadastrar de outra maneira",
+                  "Continuar de outra maneira",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
