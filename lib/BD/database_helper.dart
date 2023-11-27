@@ -13,7 +13,7 @@ class DatabaseHelper {
   }
 
   Future<Database> initDatabase() async {
-    String path = join(await getDatabasesPath(), 'dbtesteperfil.db');
+    String path = join(await getDatabasesPath(), 'dbtesteendereco.db');
     return await openDatabase(
       path,
       version: 1,
@@ -27,7 +27,12 @@ class DatabaseHelper {
             name TEXT,
             birthday TEXT,
             isClient TINYINT,
-            profileImage TEXT
+            profileImage TEXT,
+            cep TEXT,
+            street TEXT,
+            block TEXT,
+            district TEXT,
+            city TEXT
           )
         ''');
       },
@@ -95,6 +100,30 @@ class DatabaseHelper {
       whereArgs: [phone, password],
     );
     return result.isNotEmpty;
+  }
+
+  Future<void> updateUserAddress(String identifier, Map<String, dynamic> addressData) async {
+    final Database db = await database;
+
+    try {
+      Map<String, dynamic>? existingUser = await getUserByIdentifier(identifier);
+
+      if (existingUser != null) {
+        Map<String, dynamic> updatedUser = {
+          ...existingUser,
+          ...addressData,
+        };
+
+        await db.update(
+          tableName,
+          updatedUser,
+          where: 'email = ? OR phone = ?',
+          whereArgs: [identifier, identifier],
+        );
+      }
+    } catch (e) {
+
+    }
   }
 
   Future<Map<String, dynamic>?> getUserByIdentifier(String identifier) async {

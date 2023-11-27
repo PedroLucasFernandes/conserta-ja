@@ -1,3 +1,4 @@
+import 'package:conserta_ja/BD/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -17,6 +18,35 @@ class _AddressPageState extends State<AddressPage> {
     mask: '#####-###',
     filter: {"#": RegExp(r'[0-9]')},
   );
+
+  final streetController = TextEditingController();
+  final blockController = TextEditingController();
+  final districtController = TextEditingController();
+  final cityController = TextEditingController();
+
+  late Map<String, dynamic> userData;
+
+  @override
+  void initState() {
+    super.initState();
+    userData = {'email': "", 'phone': ""};
+  }
+
+  @override
+  void didChangeDependencies() {
+    final args = ModalRoute.of(context)!.settings.arguments as String;
+    super.didChangeDependencies();
+    
+    DatabaseHelper().getUserByIdentifier(args).then((user) {
+      if (user != null) {
+        setState(() {
+          userData = user;
+        });
+      } else {
+        
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +103,7 @@ class _AddressPageState extends State<AddressPage> {
                 ),
                 SizedBox(height: 20,),
                 TextFormField(
+                  controller: streetController,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: "Rua, Número:",
@@ -91,6 +122,7 @@ class _AddressPageState extends State<AddressPage> {
                 ),
                 SizedBox(height: 20,),
                 TextFormField(
+                  controller: blockController,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: "Bloco, Número (Se morar em prédio):",
@@ -103,6 +135,7 @@ class _AddressPageState extends State<AddressPage> {
                 ),
                 SizedBox(height: 20,),
                 TextFormField(
+                  controller: districtController,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: "Bairro:",
@@ -124,6 +157,7 @@ class _AddressPageState extends State<AddressPage> {
                 ),
                 SizedBox(height: 20,),
                 TextFormField(
+                  controller: cityController,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: "Cidade/Estado:",
@@ -147,23 +181,37 @@ class _AddressPageState extends State<AddressPage> {
                 Container(
                   width: 200,
                   child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState != null && _formKey.currentState!.validate()) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Color(0XFFCEA169))
-                  ),
-                  child: Text(
-                    "Continuar",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                    onPressed: () async {
+                      if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+
+                        Map<String, dynamic> addressData = {
+                          'cep': cepController.text,
+                          'street': streetController.text,
+                          'block': blockController.text,
+                          'district': districtController.text, 
+                          'city': cityController.text
+                        };
+
+                        await DatabaseHelper().updateUserAddress(
+                          userData['email'] == "" ? userData['phone'] : userData['email'],
+                          addressData
+                        );
+
+                        Navigator.pop(context);
+                      }
+                    },
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Color(0XFFCEA169))
+                    ),
+                    child: Text(
+                      "Continuar",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
-                                ),
                 ),
               ],
             ),
