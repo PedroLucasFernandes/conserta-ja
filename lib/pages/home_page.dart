@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.black,
                         ),
                       ),
-                      SizedBox(width: 8,),
+                      SizedBox(width: 12,),
                       Container(
                         height: 40,
                         width: 40,
